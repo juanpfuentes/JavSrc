@@ -1,2 +1,4 @@
-package com.trifulcas.pepe;public class Madafaka {
+package com.trifulcas.pepe;
+
+public class Madafaka {
 }

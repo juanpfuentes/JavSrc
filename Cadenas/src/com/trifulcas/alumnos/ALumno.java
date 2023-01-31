@@ -1,2 +1,4 @@
-package com.trifulcas.alumnos;public class ALumno {
+package com.trifulcas.alumnos;
+
+public class ALumno {
 }

@@ -12,7 +12,7 @@ public class Main {
         System.out.println(UtilsString.palindromo(("qwqw")));
         System.out.println(UtilsString.palindromo(("ana")));
         System.out.println(UtilsString.palindromo(("Isaac no ronca así")));
-        System.out.println(UtilsString.quitarAcentos(("Áéíüñòâ")));
+        System.out.println(UtilsString.quitarAcentos(("ÁéíüñòâÜ")));
         System.out.println(UtilsString.vocales("Alegría"));
     }
 

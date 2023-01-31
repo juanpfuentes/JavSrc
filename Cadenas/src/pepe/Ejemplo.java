@@ -1,4 +1,4 @@
-package com.trifulcas.clases;
+package pepe;
 
 public class Ejemplo {
     private String nombre;
