@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.trifulcas.dao.Country;
 import com.trifulcas.dao.CountryDAO;
+import com.trifulcas.models.Country;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
