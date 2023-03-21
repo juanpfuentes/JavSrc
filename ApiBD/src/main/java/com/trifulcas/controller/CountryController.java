@@ -44,7 +44,10 @@ public class CountryController extends HttpServlet {
 
 				List<Country> todos = paises.paises();
 				JSONArray resultado = new JSONArray(todos);
-				response.getWriter().append(resultado.toString());
+				JSONObject res = new JSONObject();
+				res.put("error", false);
+				res.put("Data", resultado.toString());
+				response.getWriter().append(res.toString());
 			} else {
 				int id = Integer.parseInt(parametro.substring(1));
 				Country pais = paises.paisPorId(id);
@@ -67,6 +70,7 @@ public class CountryController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Leer los datos que nos mandan
+		JSONObject error = new JSONObject();
 		try {
 
 			String data = request.getReader().lines().collect(Collectors.joining());
@@ -74,9 +78,11 @@ public class CountryController extends HttpServlet {
 			CountryDAO daoPais = new CountryDAO();
 
 			daoPais.crearPais(0, pais.get("country").toString());
+			error.put("Error", false);
+			response.getWriter().append(error.toString());
 		} catch (Exception ex) {
-			JSONObject error = new JSONObject();
-			error.put("Error", "POST");
+			
+			error.put("Error", true);
 			error.put("Mensaje", ex.getMessage());
 			response.getWriter().append(error.toString());
 		}
@@ -87,7 +93,8 @@ public class CountryController extends HttpServlet {
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Modificar el elemento
+		JSONObject error = new JSONObject();
+			// Modificar el elemento
 		try {
 			// Obtener el JSON que me pasan
 			String data = request.getReader().lines().collect(Collectors.joining());
@@ -99,10 +106,10 @@ public class CountryController extends HttpServlet {
 			// Utilizo el DAO para hacer el cambio
 			CountryDAO daoPais = new CountryDAO();
 			daoPais.cambiarPais(id, pais.getString("country"));
-
+			error.put("Error", false);
+			response.getWriter().append(error.toString());
 		} catch (Exception ex) {
-			JSONObject error = new JSONObject();
-			error.put("Error", "POST");
+			error.put("Error", true);
 			error.put("Mensaje", ex.getMessage());
 			response.getWriter().append(error.toString());
 		}
@@ -113,15 +120,17 @@ public class CountryController extends HttpServlet {
 	 */
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		JSONObject error = new JSONObject();
 		try {
 			String parametro = request.getPathInfo();
 			int id = Integer.parseInt(parametro.substring(1));
 			CountryDAO daoPais = new CountryDAO();
 			daoPais.borrarPais(id);
-			
+			error.put("Error", false);
+			response.getWriter().append(error.toString());
+		
 		}catch (Exception ex) {
-			JSONObject error = new JSONObject();
-			error.put("Error", "POST");
+			error.put("Error", true);
 			error.put("Mensaje", ex.getMessage());
 			response.getWriter().append(error.toString());
 		}

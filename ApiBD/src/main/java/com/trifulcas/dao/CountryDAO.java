@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +35,15 @@ public class CountryDAO {
 			return false;
 		}
 		try {
-			PreparedStatement ps = connection.prepareStatement("insert into country (country_id, country) values(?,?)");
+			PreparedStatement ps = connection.prepareStatement("insert into country (country_id, country) values(?,?)",Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, country_id);
 			ps.setString(2, country);
 			int filasAfectadas = ps.executeUpdate();
+			ResultSet rs=ps.getGeneratedKeys();
+			long last_id=0;
+			if (rs.next()) {
+			last_id=rs.getLong(1);
+			}
 			return filasAfectadas == 1;
 		} catch (Exception ex) {
 			System.out.println("Error al añadir el país");
