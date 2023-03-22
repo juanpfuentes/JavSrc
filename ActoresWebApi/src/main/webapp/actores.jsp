@@ -23,10 +23,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<body class="container">
 	<h1>Lista de actores</h1>
-	<p><a href="./nuevo" class="btn btn-primary">Nuevo actor</a></p>
-
+	<p><a href="./nuevo" class="btn btn-primary">Nuevo actor</a> </p>
+<form> 
+    <input type="text" class="form-control" placeholder="Texto a buscar" name="search"><input type="submit" class="btn btn-success"></form>
 
 	<table class="table table-bordered">
 		<thead>
@@ -39,7 +40,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!--   for (Todo todo: todos) {  -->
+				<!--   for (Todo todo: todos) {  -->
 			<c:forEach var="actor" items="${actores}">
 
 				<tr>

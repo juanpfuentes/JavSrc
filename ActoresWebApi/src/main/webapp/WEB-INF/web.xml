@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>borrame</servlet-name>
+  	<display-name>borrame</display-name>
+  	<description></description>
+  	<servlet-class>com.trifulcas.controller.borrame</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>borrame</servlet-name>
+  	<url-pattern>/borrame</url-pattern>
+  </servlet-mapping>
 </web-app>

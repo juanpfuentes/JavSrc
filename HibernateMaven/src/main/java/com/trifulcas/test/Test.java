@@ -11,7 +11,7 @@ public class Test {
 		AlumnoDAO AlumnoDao = new AlumnoDAO();
 		Alumno Alumno = new Alumno(null, "Juan Perez", "ana@pi.com", 7,"666666");
 		AlumnoDao.saveAlumno(Alumno);
-		Alumno foo=AlumnoDao.getAlumno(1962);
+		Alumno foo=AlumnoDao.getAlumno(19);
 		foo.setMail("pepe@pepito.com");
 		AlumnoDao.saveAlumno(foo);
 		System.out.println(foo);

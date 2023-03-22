@@ -18,7 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Controlador
  */
-@WebServlet(urlPatterns = {"/actor","/nuevo","/insertar","/editar","/actualizar"})
+@WebServlet(urlPatterns = {"/actor","/nuevo","/insertar","/editar","/actualizar","/borrar"})
 public class Controlador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ActorDAO actorDao;
@@ -88,8 +88,15 @@ public class Controlador extends HttpServlet {
 
 	private void listaActores(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-
-		List<Actor> actores = actorDao.getActors();
+		String search=request.getParameter("search");
+		System.out.println(search);
+		List<Actor> actores;
+		if (search==null) {
+			actores = actorDao.getActors();
+		}else {
+			actores = actorDao.getActors(search);
+		}
+		
 		request.setAttribute("actores", actores);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("actores.jsp");
 		dispatcher.forward(request, response);
@@ -107,7 +114,7 @@ public class Controlador extends HttpServlet {
 		String last_name = request.getParameter("last_name");
 		Actor actor = new Actor(0, first_name, last_name, null);
 		actorDao.addActor(actor);
-		response.sendRedirect("listaActores");
+		response.sendRedirect("actor");
 	}
 
 	private void editarActor(HttpServletRequest request, HttpServletResponse response)
@@ -134,7 +141,7 @@ public class Controlador extends HttpServlet {
 			throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		actorDao.deleteActor(id);
-		response.sendRedirect("list");
+		response.sendRedirect("actor");
 
 	}
 }
