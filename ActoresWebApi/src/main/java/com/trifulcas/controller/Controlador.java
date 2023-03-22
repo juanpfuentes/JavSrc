@@ -124,7 +124,6 @@ public class Controlador extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("editar.jsp");
 		request.setAttribute("actor", actor);
 		dispatcher.forward(request, response);
-
 	}
 
 	private void actualizarActor(HttpServletRequest request, HttpServletResponse response)
