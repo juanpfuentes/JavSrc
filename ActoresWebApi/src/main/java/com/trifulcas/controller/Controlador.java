@@ -1,9 +1,9 @@
 package com.trifulcas.controller;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.List;
-
 
 import com.trifulcas.dao.Actor;
 import com.trifulcas.dao.ActorDAO;
@@ -111,7 +111,7 @@ public class Controlador extends HttpServlet {
 	private void insertarActor(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException {
 		String first_name = request.getParameter("first_name");
-		String last_name = request.getParameter("last_name");
+			String last_name = request.getParameter("last_name");
 		Actor actor = new Actor(0, first_name, last_name, null);
 		actorDao.addActor(actor);
 		response.sendRedirect("actor");

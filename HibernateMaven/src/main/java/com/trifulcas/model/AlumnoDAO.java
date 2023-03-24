@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
+import com.trifulcas.model.*;
 import com.trifulcas.HibernateMaven.HibernateUtil;
 
 public class AlumnoDAO {

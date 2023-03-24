@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+<title>Trifulcas - actores</title>
+
+<link rel="stylesheet" type="text/css"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script type="text/javascript"
+	th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+
+<body class="container">
+	<div th:replace="fragments/header :: header"></div>
+	<div class="my-3">
+		<form th:action="@{/actors}">
+			<div class="row d-flex">
+				<div class="col-md-6 mt-2">
+					<div class="search">
+						<i class="fa fa-search"></i> <input id="keyword" type="search"
+							name="keyword" th:value="${keyword}" required
+							class="form-control" placeholder="Buscar....">
+						<button type="submit" class="btn btn-secondary">Buscar</button>
+					</div>
+				</div>
+				<div class="col-md-6 mt-2">
+					<button id="btnClear" class="btn btn-info">Limipiar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:if="${message != null}"
+		class="alert alert-success alert-dismissible fade show text-center message"
+		role="alert">
+		[[${message}]]
+		<button type="button" class="close btn-sm" data-dismiss="alert"
+			aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+	</div>
+
+	<div th:if="${actors.size() > 0}">
+		<table class="table table-hover table-responsive-xl">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">First name</th>
+					<th scope="col">Last name</th>
+					<th scope="col">Updated</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="actor : ${actors}">
+					<th scope="row">[[${actor.actorId}]]</th>
+					<td>[[${actor.firstName}]]</td>
+					<td>[[${actor.lastName}]]</td>
+					<td>[[${actor.lastUpdate}]]</td>
+
+					<td><a th:href="@{'/actors/' + ${actor.actorId}}"
+						title="Editar actor" class="fa-regular fa-pen-to-square icon-dark"></a>
+
+						<a th:href="@{'/actors/delete/' + ${actor.actorId}}"
+						th:actorTitle="${actor.firstName}" id="btnDelete"
+						title="Borrar actor"
+						class="fa-regular fa-trash-can icon-dark btn-delete"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>
