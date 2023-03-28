@@ -13,7 +13,6 @@ import java.util.Date;
 
 @Entity
 @Table(name = "products")
-@EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "created_at", "updated_at" }, allowGetters = true)
 public class Product {
 
