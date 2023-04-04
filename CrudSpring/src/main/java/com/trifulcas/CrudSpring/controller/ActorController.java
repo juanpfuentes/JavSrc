@@ -25,7 +25,7 @@ public class ActorController {
 
 		try {
 			List<Actor> actors = new ArrayList<Actor>();
-			System.out.println(keyword);
+			
 			if (keyword == null) {
 				actorRepository.findAll().forEach(actors::add);
 			} else {
@@ -52,7 +52,6 @@ public class ActorController {
 	public String save(Actor actor, RedirectAttributes redirectAttributes) {
 		try {
 			actorRepository.save(actor);
-
 			redirectAttributes.addFlashAttribute("message", "Actor guardado");
 		} catch (Exception e) {
 			redirectAttributes.addFlashAttribute("message", e.getMessage());
